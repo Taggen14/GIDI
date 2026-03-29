@@ -7,18 +7,18 @@ Solo-utvecklarprojekt. Svenska användare. Målgrupp: amatöridrottare.
 
 ## Tech stack
 
-| Del | Teknologi | Notering |
-|-----|-----------|----------|
-| Frontend | Next.js 15, App Router | SSR/SSG, Server Components |
-| Backend/CMS | Payload CMS v3 | Körs inuti Next.js, TypeScript-first |
-| Databas | PostgreSQL | Via Railway lokalt och i produktion |
-| Auth | Payload inbyggd auth | Email/lösenord nu → BankID senare |
-| Betalning | Klarna Payments API | Swish ingår, ingen månadsavgift |
-| Realtid/GPS | Ably | WebSockets, live GPS under event |
-| Kartor | Mapbox GL JS | react-map-gl, GeoJSON för rutter |
-| Hosting | Vercel (app) + Railway (DB) | |
-| Pakethanterare | pnpm | Använd alltid pnpm, aldrig npm/yarn |
-| Språk | TypeScript | Strikt, inga any-typer |
+| Del            | Teknologi                   | Notering                             |
+| -------------- | --------------------------- | ------------------------------------ |
+| Frontend       | Next.js 15, App Router      | SSR/SSG, Server Components           |
+| Backend/CMS    | Payload CMS v3              | Körs inuti Next.js, TypeScript-first |
+| Databas        | PostgreSQL                  | Via Railway lokalt och i produktion  |
+| Auth           | Payload inbyggd auth        | Email/lösenord nu → BankID senare    |
+| Betalning      | Klarna Payments API         | Swish ingår, ingen månadsavgift      |
+| Realtid/GPS    | Ably                        | WebSockets, live GPS under event     |
+| Kartor         | Mapbox GL JS                | react-map-gl, GeoJSON för rutter     |
+| Hosting        | Vercel (app) + Railway (DB) |                                      |
+| Pakethanterare | pnpm                        | Använd alltid pnpm, aldrig npm/yarn  |
+| Språk          | TypeScript                  | Strikt, inga any-typer               |
 
 ---
 
@@ -49,23 +49,28 @@ src/
 ## Collections (datamodell)
 
 ### Users
+
 Fält: email, password, firstName, lastName, personnummer (platshållare för BankID),
 phone, address, role (user | admin), profileImage, createdAt
 
 ### Events (triathlon)
+
 Fält: title, description, date, location (koordinater + adress), maxParticipants,
 startFee, status (draft | published | completed), route (GeoJSON), segments (swim/bike/run)
 
 ### Registrations
+
 Fält: user (rel → Users), event (rel → Events), status (pending | paid | cancelled),
 klarnaOrderId, paidAt, bibNumber, createdAt
 
 ### TrainingSessions (träningskalender)
+
 Fält: user (rel → Users), activityType (running | cycling | swimming),
 date, time, startLocation (koordinater + adress), description,
 isPublic (bool), participants (rel → Users[])
 
 ### Media
+
 Standard Payload media collection med bildoptimering.
 
 ---
@@ -103,55 +108,36 @@ Standard Payload media collection med bildoptimering.
 
 ---
 
-## Miljövariabler
-
-```bash
-# Databas
-DATABASE_URI=postgresql://...
-
-# Payload
-PAYLOAD_SECRET=...
-NEXT_PUBLIC_SERVER_URL=http://localhost:3000
-
-# Mapbox
-NEXT_PUBLIC_MAPBOX_TOKEN=...
-
-# Ably
-ABLY_API_KEY=...
-NEXT_PUBLIC_ABLY_KEY=...
-
-# Klarna
-KLARNA_API_KEY=...
-KLARNA_API_SECRET=...
-```
-
----
-
 ## Roadmap & nuvarande fas
 
 ### ✅ Fas 1 – Grund & infrastruktur (klar)
+
 - Next.js + Payload CMS uppsatt
 - PostgreSQL via Railway
 - Vercel + Railway hosting konfigurerat
 
 ### 🔄 Fas 2 – Användare & auth (pågår)
+
 - [ ] Users collection med alla fält
 - [ ] Registrering & inloggning
 - [ ] Skyddade routes & middleware
 - [ ] Profilsida
 
 ### ⏳ Fas 3 – Träningskalender
+
 - [ ] TrainingSession collection
 - [ ] Kalender-UI (7 dagar)
 - [ ] Mapbox för startplatser
 - [ ] Häng-på funktionalitet
 
 ### ⏳ Fas 4 – Event & betalning
+
 - [ ] Event & Registration collections
 - [ ] Event-sidor & anmälningsflöde
 - [ ] Klarna-integration
 
 ### ⏳ Fas 5 – Live GPS-tracking
+
 - [ ] Ably realtidskanal
 - [ ] GPS-sändare via PWA
 - [ ] Live-karta för åskådare

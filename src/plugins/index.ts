@@ -12,6 +12,7 @@ import { beforeSyncWithSearch } from '@/search/beforeSync'
 
 import { Page, Post } from '@/payload-types'
 import { getServerSideURL } from '@/utilities/getURL'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 
 const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
   return doc?.title ? `${doc.title} | Payload Website Template` : 'Payload Website Template'
@@ -24,6 +25,18 @@ const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
 }
 
 export const plugins: Plugin[] = [
+  vercelBlobStorage({
+    enabled: true, // Optional, defaults to true
+    // Specify which collections should use Vercel Blob
+    collections: {
+      media: true /* 
+        'media-with-prefix': {
+          prefix: 'my-prefix',
+        }, */,
+    },
+    // Token provided by Vercel once Blob storage is added to your Vercel project
+    token: process.env.BLOB_READ_WRITE_TOKEN,
+  }),
   redirectsPlugin({
     collections: ['pages', 'posts'],
     overrides: {
