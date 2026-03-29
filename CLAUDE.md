@@ -79,7 +79,7 @@ Standard Payload media collection med bildoptimering.
 
 - Payload inbyggd JWT-auth med HTTP-only cookies
 - Alla routes under /calendar, /profile, /events/register kräver inloggning
-- Middleware i src/middleware.ts skyddar dessa routes
+- Middleware i src/access/ skyddar dessa routes
 - TrainingSession startplats/tid visas ALDRIG för ej inloggade användare
 - BankID-integration planeras i fas 2 – personnummer-fält redan på Users nu
 - Admin-roll krävs för att skapa/redigera Events
@@ -120,7 +120,7 @@ Standard Payload media collection med bildoptimering.
 
 - [ ] Users collection med alla fält
 - [ ] Registrering & inloggning
-- [ ] Skyddade routes & middleware
+- [ ] Skyddade routes
 - [ ] Profilsida
 
 ### ⏳ Fas 3 – Träningskalender

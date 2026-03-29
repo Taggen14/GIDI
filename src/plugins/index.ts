@@ -26,7 +26,7 @@ const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
 
 export const plugins: Plugin[] = [
   vercelBlobStorage({
-    enabled: true, // Optional, defaults to true
+    enabled: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
     // Specify which collections should use Vercel Blob
     collections: {
       media: true /* 
