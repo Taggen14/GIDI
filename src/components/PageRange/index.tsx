@@ -5,16 +5,11 @@ const defaultLabels = {
   singular: 'Doc',
 }
 
-const defaultCollectionLabels = {
-  posts: {
-    plural: 'Posts',
-    singular: 'Post',
-  },
-}
+const defaultCollectionLabels: Record<string, { plural: string; singular: string }> = {}
 
 export const PageRange: React.FC<{
   className?: string
-  collection?: keyof typeof defaultCollectionLabels
+  collection?: string
   collectionLabels?: {
     plural?: string
     singular?: string

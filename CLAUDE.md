@@ -5,6 +5,8 @@ Solo-utvecklarprojekt. Svenska användare. Målgrupp: amatöridrottare.
 
 ---
 
+# Motivera ALLTID edits eller terminal commando inna du fråga mig "yes" eller "no"
+
 ## Tech stack
 
 | Del            | Teknologi                   | Notering                             |
@@ -118,6 +120,7 @@ Standard Payload media collection med bildoptimering.
 
 ### 🔄 Fas 2 – Användare & auth (pågår)
 
+- [ ] Radera onödig kod från payloads website template (post, category, ev något mer)
 - [ ] Users collection med alla fält
 - [ ] Registrering & inloggning
 - [ ] Skyddade routes
