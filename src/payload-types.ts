@@ -664,8 +664,26 @@ export interface User {
    * Platshållare för BankID — används i fas 2
    */
   personnummer?: string | null;
-  role: 'user' | 'admin';
   profileImage?: (number | null) | Media;
+  /**
+   * Krävs för anmälan till event
+   */
+  dateOfBirth?: string | null;
+  gender?: ('male' | 'female' | 'other') | null;
+  /**
+   * T.ex. Sverige, Norge
+   */
+  nationality?: string | null;
+  /**
+   * Frivilligt — idrottsklubb eller förening
+   */
+  club?: string | null;
+  emergencyContact?: string | null;
+  emergencyPhone?: string | null;
+  /**
+   * Sätts automatiskt till "Athlet" när idrottsprofilen är ifylld.
+   */
+  role: 'user' | 'athlete' | 'admin';
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -1143,8 +1161,14 @@ export interface UsersSelect<T extends boolean = true> {
   lastName?: T;
   phone?: T;
   personnummer?: T;
-  role?: T;
   profileImage?: T;
+  dateOfBirth?: T;
+  gender?: T;
+  nationality?: T;
+  club?: T;
+  emergencyContact?: T;
+  emergencyPhone?: T;
+  role?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;

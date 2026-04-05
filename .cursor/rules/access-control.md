@@ -66,12 +66,6 @@ export const adminOrSelf: Access = ({ req: { user } }) => {
   if (user?.roles?.includes('admin')) return true
   return { id: { equals: user?.id } }
 }
-
-// Published or authenticated
-export const authenticatedOrPublished: Access = ({ req: { user } }) => {
-  if (user) return true
-  return { _status: { equals: 'published' } }
-}
 ```
 
 ## Row-Level Security

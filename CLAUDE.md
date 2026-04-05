@@ -5,7 +5,7 @@ Solo-utvecklarprojekt. Svenska användare. Målgrupp: amatöridrottare.
 
 ---
 
-# Motivera ALLTID edits eller terminal commando inna du fråga mig "yes" eller "no"
+# Motivera ALLTID edits eller terminal commando innan du fråga mig "yes" eller "no"
 
 ## Tech stack
 
@@ -21,30 +21,6 @@ Solo-utvecklarprojekt. Svenska användare. Målgrupp: amatöridrottare.
 | Hosting        | Vercel (app) + Railway (DB) |                                      |
 | Pakethanterare | pnpm                        | Använd alltid pnpm, aldrig npm/yarn  |
 | Språk          | TypeScript                  | Strikt, inga any-typer               |
-
----
-
-## Projektstruktur
-
-```
-src/
-├── app/
-│   ├── (frontend)/        # Alla användarsidor
-│   │   ├── page.tsx       # Startsida
-│   │   ├── events/        # Event-sidor
-│   │   ├── calendar/      # Träningskalender
-│   │   └── profile/       # Profilsida
-│   └── (payload)/         # Payload admin-panel
-├── collections/           # Payload collections
-│   ├── Users.ts
-│   ├── Events.ts
-│   ├── Registrations.ts
-│   ├── TrainingSessions.ts
-│   └── Media.ts
-├── globals/               # Payload globals
-├── components/            # Delade React-komponenter
-└── lib/                   # Hjälpfunktioner, API-anrop
-```
 
 ---
 
@@ -120,8 +96,9 @@ Standard Payload media collection med bildoptimering.
 
 ### 🔄 Fas 2 – Användare & auth (pågår)
 
-- [ ] Radera onödig kod från payloads website template (post, category, ev något mer)
-- [ ] Users collection med alla fält
+- Radera onödig kod från payloads website template (post, category, ev något mer)
+- Users collection med alla fält
+- [ ] Header/Footer, navigering
 - [ ] Registrering & inloggning
 - [ ] Skyddade routes
 - [ ] Profilsida
@@ -162,5 +139,4 @@ Standard Payload media collection med bildoptimering.
 ## Windows-specifikt (utvecklingsmiljö)
 
 - Node.js v20 (v24 stöds ej av Payload ännu)
-- Kör i Git Bash eller WSL2 – undvik PowerShell för pnpm-kommandon
-- SCSS-sökvägar kan krångla på Windows – använd alltid forward slash i imports
+- Kör i Git Bash – undvik PowerShell för pnpm-kommandon
