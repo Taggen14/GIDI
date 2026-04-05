@@ -657,7 +657,15 @@ export interface Form {
  */
 export interface User {
   id: number;
-  name?: string | null;
+  firstName: string;
+  lastName: string;
+  phone?: string | null;
+  /**
+   * Platshållare för BankID — används i fas 2
+   */
+  personnummer?: string | null;
+  role: 'user' | 'admin';
+  profileImage?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -1131,7 +1139,12 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
-  name?: T;
+  firstName?: T;
+  lastName?: T;
+  phone?: T;
+  personnummer?: T;
+  role?: T;
+  profileImage?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
