@@ -18,13 +18,14 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
+import { anyone } from '@/access/anyone'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
   access: {
     create: authenticated,
     delete: authenticated,
-    read: authenticated,
+    read: anyone,
     update: authenticated,
   },
   // This config controls what's populated by default when a page is referenced
