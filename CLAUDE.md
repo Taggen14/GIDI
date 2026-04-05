@@ -9,18 +9,18 @@ Solo-utvecklarprojekt. Svenska användare. Målgrupp: amatöridrottare.
 
 ## Tech stack
 
-| Del            | Teknologi                   | Notering                             |
-| -------------- | --------------------------- | ------------------------------------ |
-| Frontend       | Next.js 15, App Router      | SSR/SSG, Server Components           |
-| Backend/CMS    | Payload CMS v3              | Körs inuti Next.js, TypeScript-first |
-| Databas        | PostgreSQL                  | Via Railway lokalt och i produktion  |
-| Auth           | Payload inbyggd auth        | Email/lösenord nu → BankID senare    |
-| Betalning      | Klarna Payments API         | Swish ingår, ingen månadsavgift      |
-| Realtid/GPS    | Ably                        | WebSockets, live GPS under event     |
-| Kartor         | Mapbox GL JS                | react-map-gl, GeoJSON för rutter     |
-| Hosting        | Vercel (app) + Railway (DB) |                                      |
-| Pakethanterare | pnpm                        | Använd alltid pnpm, aldrig npm/yarn  |
-| Språk          | TypeScript                  | Strikt, inga any-typer               |
+| Del            | Teknologi                         | Notering                             |
+| -------------- | --------------------------------- | ------------------------------------ |
+| Frontend       | Next.js 15, App Router, shadcn ui | SSR/SSG, Server Components           |
+| Backend/CMS    | Payload CMS v3                    | Körs inuti Next.js, TypeScript-first |
+| Databas        | PostgreSQL                        | Via Railway lokalt och i produktion  |
+| Auth           | Payload inbyggd auth              | Email/lösenord nu → BankID senare    |
+| Betalning      | Klarna Payments API               | Swish ingår, ingen månadsavgift      |
+| Realtid/GPS    | Ably                              | WebSockets, live GPS under event     |
+| Kartor         | Mapbox GL JS                      | react-map-gl, GeoJSON för rutter     |
+| Hosting        | Vercel (app) + Railway (DB)       |                                      |
+| Pakethanterare | pnpm                              | Använd alltid pnpm, aldrig npm/yarn  |
+| Språk          | TypeScript                        | Strikt, inga any-typer               |
 
 ---
 
@@ -102,6 +102,7 @@ Standard Payload media collection med bildoptimering.
 - [ ] Registrering & inloggning
 - [ ] Skyddade routes
 - [ ] Profilsida
+- [ ] sheet meny för mindre skärmar ev också desktop
 
 ### ⏳ Fas 3 – Träningskalender
 
