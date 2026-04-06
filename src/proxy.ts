@@ -4,7 +4,7 @@ import type { NextRequest } from 'next/server'
 // Routes som kräver inloggning
 const protectedRoutes = ['/profil', '/kalender']
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
   const token = request.cookies.get('payload-token')?.value
 
