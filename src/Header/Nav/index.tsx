@@ -1,91 +1,95 @@
 'use client'
 
 import React, { useState } from 'react'
+import { Menu, X } from 'lucide-react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { Menu } from 'lucide-react'
+import { usePathname } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
-import type { Header as HeaderType, User } from '@/payload-types'
+import type { Header as HeaderType, User as UserType } from '@/payload-types'
 
-import { CMSLink } from '@/components/Link'
 import { Button } from '@/components/ui/button'
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
-import { getClientSideURL } from '@/utilities/getURL'
+import { ThemeToggle } from './ThemeToggle'
+import { LanguagePicker } from './LanguagePicker'
+import { ProfileMenu } from './ProfileMenu'
 
-export const HeaderNav: React.FC<{ data: HeaderType; user: User | null }> = ({ data, user }) => {
-  const navItems = data?.navItems || []
-  const router = useRouter()
-const [open, setOpen] = useState(false)
-  const [loggingOut, setLoggingOut] = useState(false)
+const NAV_LINKS = [
+  { href: '/event', key: 'events' },
+  { href: '/kalender', key: 'calendar' },
+  { href: '/om-oss', key: 'about' },
+  { href: '/kontakt', key: 'contact' },
+] as const
 
-  const handleLogout = async () => {
-    setLoggingOut(true)
-    await fetch(`${getClientSideURL()}/api/users/logout`, {
-      method: 'POST',
-      credentials: 'include',
-    })
-    setOpen(false)
-    router.push('/')
-    router.refresh()
-  }
-
-  const authLinks = user ? (
-    <>
-      <Link href="/profil" onClick={() => setOpen(false)}>
-        <Button variant="ghost" size="sm">{user.firstName}</Button>
-      </Link>
-      <Button variant="outline" size="sm" onClick={handleLogout} disabled={loggingOut}>
-        {loggingOut ? 'Loggar ut...' : 'Logga ut'}
-      </Button>
-    </>
-  ) : (
-    <>
-      <Link href="/logga-in" onClick={() => setOpen(false)}>
-        <Button variant="ghost" size="sm">Logga in</Button>
-      </Link>
-      <Link href="/registrera" onClick={() => setOpen(false)}>
-        <Button size="sm">Skapa konto</Button>
-      </Link>
-    </>
-  )
+export const HeaderNav: React.FC<{ data: HeaderType; user: UserType | null }> = ({ user }) => {
+  const pathname = usePathname()
+  const [menuOpen, setMenuOpen] = useState(false)
+  const t = useTranslations('nav')
 
   return (
     <>
-      {/* Desktop */}
-      <nav className="hidden md:flex gap-6 items-center">
-        {navItems.map(({ link }, i) => (
-          <CMSLink key={i} {...link} appearance="link" />
+      {/* Desktop — länkar centrerade, kontroller till höger */}
+      <nav className="hidden md:flex flex-1 justify-center gap-6 items-center">
+        {NAV_LINKS.map(({ href, key }) => (
+          <Link
+            key={href}
+            href={href}
+            className={`text-sm font-medium transition-colors hover:text-foreground/80 ${
+              pathname === href ? 'text-foreground' : 'text-foreground/60'
+            }`}
+          >
+            {t(key)}
+          </Link>
         ))}
-        <div className="flex gap-2 items-center ml-4 border-l border-border pl-4">
-          {authLinks}
-        </div>
       </nav>
+      <div className="hidden md:flex gap-1 items-center border-l border-border pl-4">
+        <ThemeToggle />
+        <LanguagePicker />
+        <ProfileMenu user={user} />
+      </div>
 
       {/* Mobil */}
-      <div className="md:hidden">
-        <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" aria-label="Öppna meny">
-              <Menu className="h-5 w-5" />
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="right" className="flex flex-col pt-12">
-            <nav className="flex flex-col gap-4 flex-1">
-              {navItems.map(({ link }, i) => (
-                <CMSLink
-                  key={i}
-                  {...link}
-                  appearance="link"
-                  className="text-lg"
-                />
-              ))}
-            </nav>
-            <div className="flex flex-col gap-2 border-t border-border pt-4 pb-4">
-              {authLinks}
-            </div>
-          </SheetContent>
-        </Sheet>
+      <div className="md:hidden flex items-center gap-2 ml-auto">
+        <ThemeToggle />
+        <LanguagePicker />
+        <ProfileMenu user={user} />
+        <Button
+          className="flex flex-col gap-0"
+          variant="ghost"
+          size="icon"
+          aria-label={menuOpen ? 'Stäng meny' : 'Öppna meny'}
+          onClick={() => setMenuOpen((v) => !v)}
+        >
+          {menuOpen ? (
+            <X />
+          ) : (
+            <>
+              <Menu />
+              <span className="text-xs">Meny</span>
+            </>
+          )}
+        </Button>
       </div>
+
+      {/* Mobilmeny — glider ned under headern */}
+      {menuOpen && (
+        <div className="md:hidden absolute left-0 right-0 top-full border-b border-t border-border bg-card z-50 shadow-md">
+          <div className="fixed inset-0 -z-10" onClick={() => setMenuOpen(false)} />
+          <nav className="container flex flex-col py-2">
+            {NAV_LINKS.map(({ href, key }) => (
+              <Link
+                key={href}
+                href={href}
+                onClick={() => setMenuOpen(false)}
+                className={`py-3 text-end w-full text-base border-b border-border last:border-0 ${
+                  pathname === href ? 'font-medium' : ''
+                }`}
+              >
+                {t(key)}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      )}
     </>
   )
 }

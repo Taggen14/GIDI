@@ -98,7 +98,7 @@ Standard Payload media collection med bildoptimering.
 
 - Radera onödig kod från payloads website template (post, category, ev något mer)
 - Users collection med alla fält
-- [ ] Header/Footer, navigering
+- [ ] Header/Footer, navigering, shadcn
 - [ ] Registrering & inloggning
 - [ ] Skyddade routes
 - [ ] Profilsida

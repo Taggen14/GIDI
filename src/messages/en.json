@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "events": "Events",
+    "calendar": "Calendar",
+    "about": "About us",
+    "contact": "Contact"
+  },
+  "auth": {
+    "login": "Log in",
+    "register": "Create account",
+    "logout": "Log out",
+    "loggingOut": "Logging out...",
+    "myProfile": "My profile"
+  }
+}

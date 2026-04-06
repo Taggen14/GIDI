@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "events": "Event",
+    "calendar": "Kalender",
+    "about": "Om oss",
+    "contact": "Kontakt"
+  },
+  "auth": {
+    "login": "Logga in",
+    "register": "Skapa konto",
+    "logout": "Logga ut",
+    "loggingOut": "Loggar ut...",
+    "myProfile": "Min profil"
+  }
+}
